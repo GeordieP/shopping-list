@@ -11,41 +11,27 @@ import {
   IonHeader,
   IonList,
   IonItem,
-  IonLabel
+  IonLabel,
+  IonText
 } from "@ionic/react";
 
 interface ListItemMenuModalProps {
-  match: { params: { itemId: string } };
+  close: () => void;
 }
 
 const ListItemMenuModal: React.FC<ListItemMenuModalProps> = props => {
-  // const itemId = match.params.itemId || "no item id";
-  const itemId = "no item id yet";
-
-  console.log(props);
-
   return (
     <React.Fragment>
-      <h1>I'm the modal content</h1>
-      <h2>Item id is {itemId}</h2>
-      <Link to="/">Close</Link>
+      <IonText color="dark">
+        <h1>I'm the modal content</h1>
+      </IonText>
+      <IonButton onClick={props.close}>Close</IonButton>
     </React.Fragment>
   );
 };
 
-const ModalRouter: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
-  return (
-    <IonModal isOpen={isOpen}>
-      <IonRouterOutlet>
-        <Route path="/itemMenu/:itemId" component={ListItemMenuModal} />
-        <Route path="" component={ListItemMenuModal} />
-      </IonRouterOutlet>
-    </IonModal>
-  );
-};
-
 const MainListPage: React.FC = () => {
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(true);
 
   const toggleModal = () => setModalOpen(!modalOpen);
 
@@ -59,12 +45,10 @@ const MainListPage: React.FC = () => {
       <IonContent>
         <h1>Main List</h1>
 
-        <IonButton href="/itemMenu/4" onClick={toggleModal}>
-          Open Modal
-        </IonButton>
-        {/* 
-        <Route path="/itemMenu/:itemId" component={MainListPage} /> */}
-        <ModalRouter isOpen={modalOpen} />
+        <IonButton onClick={toggleModal}>Open Modal</IonButton>
+        <IonModal isOpen={modalOpen}>
+          <ListItemMenuModal close={() => setModalOpen(false)} />
+        </IonModal>
       </IonContent>
     </IonPage>
   );
