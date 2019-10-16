@@ -1,0 +1,7 @@
+{
+  "appId": "com.gpow.shopping",
+  "appName": "shopping",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build"
+}
