@@ -31,7 +31,7 @@ const ListItemMenuModal: React.FC<ListItemMenuModalProps> = props => {
 };
 
 const MainListPage: React.FC = () => {
-  const [modalOpen, setModalOpen] = React.useState(true);
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   const toggleModal = () => setModalOpen(!modalOpen);
 

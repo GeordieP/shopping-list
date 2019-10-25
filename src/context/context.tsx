@@ -43,7 +43,7 @@ function createProvider<S, A, C>(
     ...props
   }: {
     children: React.ReactNode;
-    props: any[];
+    props?: any[];
   }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 

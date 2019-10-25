@@ -1,5 +1,7 @@
 import produce from "immer";
 
+import storage from "./storage";
+
 export const initialState = [];
 
 export const actions = {

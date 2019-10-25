@@ -7,10 +7,14 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  getPlatforms,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { apps, flash, send } from "ionicons/icons";
+
+// context
+import { ItemsContextProvider, TagsContextProvider } from "./context/context";
 
 import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
@@ -38,37 +42,47 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import "./theme/dark.css";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tags" component={TagsListPage} />
-          <Route exact path="/items" component={ItemsListPage} />
-          <Route exact path="/settings" component={SettingsPage} />
-          <Route path="/" exact component={MainListPage} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="mainTab" href="/">
-            <IonIcon icon={flash} />
-            <IonLabel>List</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="itemsTab" href="/items">
-            <IonIcon icon={apps} />
-            <IonLabel>Items</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tagsTab" href="/tags">
-            <IonIcon icon={send} />
-            <IonLabel>settings</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settingsTab" href="/settings">
-            <IonIcon icon={send} />
-            <IonLabel>settings</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  console.log("platforms", getPlatforms());
+  
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/tags" component={TagsListPage} />
+            <Route exact path="/items" component={ItemsListPage} />
+            <Route exact path="/settings" component={SettingsPage} />
+            <Route path="/" exact component={MainListPage} />
+          </IonRouterOutlet>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="mainTab" href="/">
+              <IonIcon icon={flash} />
+              <IonLabel>List</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="itemsTab" href="/items">
+              <IonIcon icon={apps} />
+              <IonLabel>Items</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tagsTab" href="/tags">
+              <IonIcon icon={send} />
+              <IonLabel>settings</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="settingsTab" href="/settings">
+              <IonIcon icon={send} />
+              <IonLabel>settings</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
-export default App;
+export default (props: any) => (
+  <ItemsContextProvider>
+    <TagsContextProvider>
+      <App {...props} />
+    </TagsContextProvider>
+  </ItemsContextProvider>
+);
