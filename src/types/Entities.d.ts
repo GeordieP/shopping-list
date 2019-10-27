@@ -1,22 +1,10 @@
 type ID = string | number;
 
-/* Item */
-
-interface Item {
-  id: ID;
-  name: string;
-  price: string;
-  tags: Tag[];
-  completed: boolean;
-  listed: boolean;
-}
-
-interface ItemsAction {
-  type: ItemsActionTypes;
+/* Base */
+interface Action {
+  NO_SAVE?: boolean;
   [key: string]: any;
 }
-
-type ItemsState = Item[];
 
 /* Tag */
 
@@ -27,9 +15,8 @@ interface Tag {
   color: string;
 }
 
-interface TagsAction {
+interface TagsAction extends Action {
   type: TagsActionTypes;
-  [key: string]: any;
 }
 
 type TagsState = Tag[];

@@ -14,6 +14,7 @@
     "@types/react-router": "^5.1.1",
     "@types/react-router-dom": "^5.1.0",
     "antd": "^3.24.0",
+    "capacitor-data-storage-sqlite": "^1.2.1-9",
     "ionicons": "^4.6.3",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
