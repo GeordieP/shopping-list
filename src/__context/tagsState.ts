@@ -1,3 +1,4 @@
+/*
 import produce from "immer";
 
 import storage from "./storage";
@@ -111,3 +112,6 @@ enum TagsActionTypes {
   RemoveItemFromTag,
   RemoveItemFromAllTags
 }
+*/
+
+export default {};

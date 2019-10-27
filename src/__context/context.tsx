@@ -1,3 +1,4 @@
+/*
 import React, { createContext, useReducer } from "react";
 
 import {
@@ -57,3 +58,7 @@ function createProvider<S, A, C>(
     );
   };
 }
+
+*/
+
+export default {};

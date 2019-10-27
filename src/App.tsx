@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
@@ -7,20 +7,21 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
-  getPlatforms,
+  IonTabs
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { apps, flash, send } from "ionicons/icons";
 
-// context
-import { ItemsContextProvider, TagsContextProvider } from "./context/context";
+// overmind
+import { createOvermind } from "overmind";
+import { Provider } from "overmind-react";
+import { config, options } from "./overmind";
 
 import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
 import TagsListPage from "./pages/TagsListPage";
 import SettingsPage from "./pages/SettingsPage";
-import Tab2 from "./pages/Tab2";
+// import Tab2 from "./pages/Tab2";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,11 +41,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import "./theme/dark.css";
+// import "./theme/dark.css";
 
 const App: React.FC = () => {
-  console.log("platforms", getPlatforms());
-  
   return (
     <IonApp>
       <IonReactRouter>
@@ -55,6 +54,7 @@ const App: React.FC = () => {
             <Route exact path="/settings" component={SettingsPage} />
             <Route path="/" exact component={MainListPage} />
           </IonRouterOutlet>
+
           <IonTabBar slot="bottom">
             <IonTabButton tab="mainTab" href="/">
               <IonIcon icon={flash} />
@@ -79,10 +79,9 @@ const App: React.FC = () => {
   );
 };
 
+const overmind = createOvermind(config, options);
 export default (props: any) => (
-  <ItemsContextProvider>
-    <TagsContextProvider>
-      <App {...props} />
-    </TagsContextProvider>
-  </ItemsContextProvider>
+  <Provider value={overmind}>
+    <App {...props} />
+  </Provider>
 );
