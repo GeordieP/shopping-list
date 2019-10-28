@@ -21,7 +21,6 @@ import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
 import TagsListPage from "./pages/TagsListPage";
 import SettingsPage from "./pages/SettingsPage";
-// import Tab2 from "./pages/Tab2";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";

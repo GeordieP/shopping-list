@@ -1,8 +1,8 @@
 declare interface Item {
-  id: ID;
+  id: string;
   name: string;
   listed: boolean;
   complete: boolean;
   price: string;
-  tags: ID[];
+  tags: string[];
 }

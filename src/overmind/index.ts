@@ -1,21 +1,40 @@
 import { IConfig } from "overmind";
 import { createHook } from "overmind-react";
-
-import state from "./state";
-import * as actions from "./actions";
+import { namespaced, merge } from "overmind/config";
 import { Options } from "overmind/lib/internalTypes";
 
-export const config = {
-  state,
-  actions
+// globals
+import globalState from "./global/state";
+import * as globalActions from "./global/actions";
+
+// models
+import items from "./models/Item";
+import tags from "./models/Tag";
+
+// config
+
+const globalConfig = {
+  state: globalState,
+  actions: globalActions
 };
 
+const namespacedConfig = namespaced({
+  items,
+  tags
+});
+
+export const config = merge(globalConfig, namespacedConfig);
+
+// react
+
+export const useOvermind = createHook<typeof config>();
+
 export const options: Options = {
-  devtools: process.env.NODE_ENV === "development"
+  devtools: true
 };
+
+// types
 
 declare module "overmind" {
   interface Config extends IConfig<typeof config> {}
 }
-
-export const useOvermind = createHook<typeof config>();

@@ -38,8 +38,9 @@ const MainListPage: React.FC = () => {
   const toggleModal = () => setModalOpen(!modalOpen);
 
   const testFunction = () => {
-    const id = Date.now();
-    actions.addItem({
+    const id = Date.now().toString();
+
+    actions.items.add({
       id,
       name: `item ${id}`,
       complete: false,
@@ -49,20 +50,20 @@ const MainListPage: React.FC = () => {
     });
   };
 
-  const testFunction2 = (itemId: ID) => {
-    const tagId = Date.now();
-    actions.addTag({ itemId, tagId });
+  const testFunction2 = (itemId: string) => {
+    const tagId = Date.now().toString();
+    actions.items.addTag({ itemId, tagId });
   };
 
-  const testFunction3 = (itemId: ID) => {
-    const item = state.items[itemId];
+  const testFunction3 = (itemId: string) => {
+    const item = state.items.items[itemId];
     const tagId = item.tags[0];
-    actions.removeTagFromItem({ itemId, tagId });
+    actions.items.removeTag({ itemId, tagId });
   };
 
-  const testFunction4 = (itemId: ID) => {
+  const testFunction4 = (itemId: string) => {
     const tagId = "fake";
-    actions.removeTagFromItem({ itemId, tagId });
+    actions.items.removeTag({ itemId, tagId });
   };
 
   return (
@@ -80,12 +81,16 @@ const MainListPage: React.FC = () => {
 
           <IonList>
             <IonListHeader>Items</IonListHeader>
-            {state.itemsList.map(i => (
+            {state.items.itemsList.map(i => (
               <IonItem key={i.id}>
                 {i.name}
                 <IonButton onClick={() => testFunction2(i.id)}>+</IonButton>
                 <IonButton onClick={() => testFunction3(i.id)}>-</IonButton>
                 <IonButton onClick={() => testFunction4(i.id)}>-</IonButton>
+
+                {i.tags.map(t => (
+                  <IonText>{t},</IonText>
+                ))}
               </IonItem>
             ))}
           </IonList>

@@ -1,6 +1,6 @@
 declare interface Tag {
-  id: ID;
+  id: string;
   name: string;
-  items: Item[];
+  items: string[];
   color: string;
 }
