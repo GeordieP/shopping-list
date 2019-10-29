@@ -8,8 +8,9 @@ import globalState from "./global/state";
 import * as globalActions from "./global/actions";
 
 // models
-import items from "./models/Item";
-import tags from "./models/Tag";
+import items from "./namespaces/items";
+import itemList from "./namespaces/itemList";
+import tags from "./namespaces/tags";
 
 // config
 
@@ -20,6 +21,7 @@ const globalConfig = {
 
 const namespacedConfig = namespaced({
   items,
+  itemList,
   tags
 });
 
