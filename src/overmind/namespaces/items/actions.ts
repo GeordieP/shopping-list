@@ -1,32 +1,36 @@
 import { Action } from "overmind";
 
+export const setAll: Action<{ [key in string]: Item }> = ({ state }, items) => {
+  state.items.items = items;
+};
+
 export const add: Action<Item> = ({ state }, item) => {
-  if (state.items.items[item.name] != null) {
+  if (state.items.items[item.id] != null) {
     throw new Error(
-      `Could not add item: Item with name >${item.name}< already exists`
+      `Could not add item: Item with id >${item.id}< already exists`
     );
   }
 
   state.items.items[item.id] = item;
 };
 
-export const remove: Action<string> = ({ state }, name) => {
-  if (state.items.items[name] == null) {
+export const remove: Action<string> = ({ state }, itemId) => {
+  if (state.items.items[itemId] == null) {
     throw new Error(
-      `Could not remove item: Item with name >${name}< doesn't exist`
+      `Could not remove item: Item with id >${itemId}< doesn't exist`
     );
   }
 
-  delete state.items.items[name];
+  delete state.items.items[itemId];
 };
 
 export const update: Action<{
   itemId: string;
   itemFields: Partial<Item>;
 }> = ({ state }, { itemId, itemFields }) => {
-  if (state.items.items[name] == null) {
+  if (state.items.items[itemId] == null) {
     throw new Error(
-      `Could not update item: Item with name >${name}< doesn't exist`
+      `Could not update item: Item with id >${itemId}< doesn't exist`
     );
   }
 

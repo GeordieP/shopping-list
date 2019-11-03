@@ -15,7 +15,7 @@ import { apps, flash, send } from "ionicons/icons";
 // overmind
 import { createOvermind } from "overmind";
 import { Provider } from "overmind-react";
-import { config, options } from "./overmind";
+import { config, options, useOvermind } from "./overmind";
 
 import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
@@ -43,6 +43,16 @@ import "./theme/variables.css";
 // import "./theme/dark.css";
 
 const App: React.FC = () => {
+  const { state } = useOvermind();
+
+  if (state.appLoading) {
+    return (
+      <IonApp>
+        <h1>Loading...</h1>
+      </IonApp>
+    );
+  }
+
   return (
     <IonApp>
       <IonReactRouter>

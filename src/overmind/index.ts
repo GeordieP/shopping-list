@@ -6,6 +6,7 @@ import { Options } from "overmind/lib/internalTypes";
 // globals
 import globalState from "./global/state";
 import * as globalActions from "./global/actions";
+import onInitialize from "./global/onInitialize";
 
 // models
 import items from "./namespaces/items";
@@ -16,7 +17,8 @@ import tags from "./namespaces/tags";
 
 const globalConfig = {
   state: globalState,
-  actions: globalActions
+  actions: globalActions,
+  onInitialize
 };
 
 const namespacedConfig = namespaced({

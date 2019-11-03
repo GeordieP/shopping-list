@@ -1,5 +1,11 @@
 import { Action } from "overmind";
 
+export const setAll: Action<
+  { [key in string]: EntityStateList<EntityState> }
+> = ({ state }, lists) => {
+  state.lists.lists = lists;
+};
+
 export const add: Action<EntityStateList<EntityState>> = ({ state }, list) => {
   const listId = list.id;
   if (state.lists.lists[listId] != null) {

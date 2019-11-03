@@ -1,7 +1,9 @@
-import { Derive } from "overmind";
+export type State = {
+  appLoading: boolean;
+};
 
-export type State = {};
-
-const state: State = {};
+const state: State = {
+  appLoading: true
+};
 
 export default state;

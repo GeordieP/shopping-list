@@ -1,5 +1,9 @@
 import { Action } from "overmind";
 
+export const setAll: Action<{ [key in string]: Tag }> = ({ state }, tags) => {
+  state.tags.tags = tags;
+};
+
 export const add: Action<Tag> = ({ state }, tag) => {
   const tagId = tag.id;
 
