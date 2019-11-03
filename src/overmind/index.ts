@@ -9,7 +9,7 @@ import * as globalActions from "./global/actions";
 
 // models
 import items from "./namespaces/items";
-import itemList from "./namespaces/itemList";
+import lists from "./namespaces/lists";
 import tags from "./namespaces/tags";
 
 // config
@@ -21,7 +21,7 @@ const globalConfig = {
 
 const namespacedConfig = namespaced({
   items,
-  itemList,
+  lists,
   tags
 });
 

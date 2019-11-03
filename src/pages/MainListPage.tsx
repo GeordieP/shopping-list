@@ -14,6 +14,8 @@ import {
   IonListHeader
 } from "@ionic/react";
 
+import id from "app/id";
+
 import { useOvermind } from "../overmind";
 
 interface ListItemMenuModalProps {
@@ -37,34 +39,40 @@ const MainListPage: React.FC = () => {
 
   const toggleModal = () => setModalOpen(!modalOpen);
 
-  const testFunction = () => {
-    const id = Date.now().toString();
+  // const testFunction = () => {
+  //   const id = Date.now().toString();
 
-    actions.items.add({
-      id,
-      name: `item ${id}`,
-      complete: false,
-      listed: false,
-      price: "0.00",
-      tags: []
-    });
-  };
+  //   actions.items.add({
+  //     id,
+  //     name: `item ${id}`,
+  //     complete: false,
+  //     listed: false,
+  //     price: "0.00",
+  //     tags: []
+  //   });
+  // };
 
-  const testFunction2 = (itemId: string) => {
-    const tagId = Date.now().toString();
-    actions.items.addTag({ itemId, tagId });
-  };
+  // const testFunction2 = (itemId: string) => {
+  //   const tagId = Date.now().toString();
+  //   actions.items.addTag({ itemId, tagId });
+  // };
 
-  const testFunction3 = (itemId: string) => {
-    const item = state.items.items[itemId];
-    const tagId = item.tags[0];
-    actions.items.removeTag({ itemId, tagId });
-  };
+  // const testFunction3 = (itemId: string) => {
+  //   const item = state.items.items[itemId];
+  //   const tagId = item.tags[0];
+  //   actions.items.removeTag({ itemId, tagId });
+  // };
 
-  const testFunction4 = (itemId: string) => {
-    const tagId = "fake";
-    actions.items.removeTag({ itemId, tagId });
-  };
+  // const testFunction4 = (itemId: string) => {
+  //   const tagId = "fake";
+  //   actions.items.removeTag({ itemId, tagId });
+  // };
+
+  // const testFunction5 = (itemId: string) => {
+  //   // add item to a list
+  //   const listKey = "MAIN";
+  //   actions.itemList.addItem({ listKey, itemId });
+  // };
 
   return (
     <IonPage>
@@ -73,8 +81,9 @@ const MainListPage: React.FC = () => {
           <IonTitle>Tab One</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
-        <h1>Main List</h1>
+      <IonContent></IonContent>
+      {/* <IonContent>
+        <h1>Raw List</h1>
 
         <IonGrid>
           <IonButton onClick={testFunction}>New Item</IonButton>
@@ -84,9 +93,28 @@ const MainListPage: React.FC = () => {
             {state.items.itemsList.map(i => (
               <IonItem key={i.id}>
                 {i.name}
+                <IonButton onClick={() => testFunction5(i.id)}>+List</IonButton>
+
+                {i.tags.map(t => (
+                  <IonText>{t},</IonText>
+                ))}
+              </IonItem>
+            ))}
+          </IonList>
+        </IonGrid>
+
+        <h1>Computed Main List</h1>
+
+        <IonGrid>
+          <IonButton onClick={testFunction}>New Item</IonButton>
+
+          <IonList>
+            <IonListHeader>MAIN list items</IonListHeader>
+            {state.itemList.resolveList("MAIN").map(i => (
+              <IonItem key={i.id}>
+                {i.name}
                 <IonButton onClick={() => testFunction2(i.id)}>+</IonButton>
-                <IonButton onClick={() => testFunction3(i.id)}>-</IonButton>
-                <IonButton onClick={() => testFunction4(i.id)}>-</IonButton>
+                <IonButton onClick={() => testFunction5(i.id)}>+List</IonButton>
 
                 {i.tags.map(t => (
                   <IonText>{t},</IonText>
@@ -100,7 +128,7 @@ const MainListPage: React.FC = () => {
         <IonModal isOpen={modalOpen}>
           <ListItemMenuModal close={() => setModalOpen(false)} />
         </IonModal>
-      </IonContent>
+      </IonContent> */}
     </IonPage>
   );
 };

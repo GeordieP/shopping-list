@@ -1,41 +1,34 @@
 import { Action } from "overmind";
 
 export const add: Action<Tag> = ({ state }, tag) => {
-  state.tags.tags[tag.id] = tag;
+  const tagId = tag.id;
+
+  if (state.tags.tags[tagId] != null) {
+    throw new Error(`Could not add tag: Tag with id >${tagId}< already exists`);
+  }
+
+  state.tags.tags[tagId] = tag;
 };
 
 export const remove: Action<string> = ({ state }, tagId) => {
+  if (state.tags.tags[tagId] == null) {
+    throw new Error(
+      `Could not remove tag: Tag with id >${tagId}< does not exist`
+    );
+  }
+
   delete state.tags.tags[tagId];
 };
 
-export const updateTag: Action<{ tagId: string; newFields: Partial<Tag> }> = (
+export const update: Action<{ tagId: string; tag: Partial<Tag> }> = (
   { state },
-  { tagId, newFields }
+  { tagId, tag }
 ) => {
-  state.tags.tags[tagId] = { ...state.tags.tags[tagId], ...newFields };
-};
+  if (state.tags.tags[tagId] == null) {
+    throw new Error(
+      `Could not update tag: Tag with id >${tagId}< does not exist`
+    );
+  }
 
-export const addItem: Action<{ tagId: string; itemId: string }> = (
-  { state },
-  { tagId, itemId }
-) => {
-  state.tags.tags[tagId].items.push(itemId);
-};
-
-export const removeItem: Action<{ tagId: string; itemId: string }> = (
-  { state },
-  { tagId, itemId }
-) => {
-  const index = state.tags.tags[tagId].items.indexOf(tagId);
-  if (index < 0) return;
-  state.tags.tags[tagId].items.splice(index, 1);
-};
-
-export const removeItemFromAll: Action<string> = (
-  { state, actions },
-  itemId
-) => {
-  state.tags.tagsList.forEach(tag =>
-    actions.tags.removeItem({ tagId: tag.id, itemId })
-  );
+  state.tags.tags[tagId] = { ...state.tags.tags[tagId], ...tag };
 };

@@ -1,9 +1,9 @@
 export type State = {
-  tags: { [key in string]: Tag };
+  lists: { [key in string]: EntityStateList<EntityState> };
 };
 
 const state: State = {
-  tags: {}
+  lists: {}
 };
 
 export default state;
