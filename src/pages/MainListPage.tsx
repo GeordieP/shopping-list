@@ -1,19 +1,16 @@
 import React from "react";
-import { Router, Route, Link } from "react-router-dom";
 import {
   IonPage,
   IonModal,
   IonButton,
   IonContent,
-  IonRouterOutlet,
   IonTitle,
   IonToolbar,
   IonHeader,
-  IonList,
-  IonItem,
-  IonLabel,
   IonText
 } from "@ionic/react";
+
+// import { useOvermind } from "../overmind";
 
 interface ListItemMenuModalProps {
   close: () => void;
@@ -31,7 +28,8 @@ const ListItemMenuModal: React.FC<ListItemMenuModalProps> = props => {
 };
 
 const MainListPage: React.FC = () => {
-  const [modalOpen, setModalOpen] = React.useState(true);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  // const { state, actions } = useOvermind();
 
   const toggleModal = () => setModalOpen(!modalOpen);
 

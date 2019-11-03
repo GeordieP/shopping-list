@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
@@ -12,11 +12,15 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { apps, flash, send } from "ionicons/icons";
 
+// overmind
+import { createOvermind } from "overmind";
+import { Provider } from "overmind-react";
+import { config, options, useOvermind } from "./overmind";
+
 import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
 import TagsListPage from "./pages/TagsListPage";
 import SettingsPage from "./pages/SettingsPage";
-import Tab2 from "./pages/Tab2";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -36,39 +40,57 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import "./theme/dark.css";
+// import "./theme/dark.css";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tags" component={TagsListPage} />
-          <Route exact path="/items" component={ItemsListPage} />
-          <Route exact path="/settings" component={SettingsPage} />
-          <Route path="/" exact component={MainListPage} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="mainTab" href="/">
-            <IonIcon icon={flash} />
-            <IonLabel>List</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="itemsTab" href="/items">
-            <IonIcon icon={apps} />
-            <IonLabel>Items</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tagsTab" href="/tags">
-            <IonIcon icon={send} />
-            <IonLabel>settings</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="settingsTab" href="/settings">
-            <IonIcon icon={send} />
-            <IonLabel>settings</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
+const App: React.FC = () => {
+  const { state } = useOvermind();
+
+  if (state.appLoading) {
+    return (
+      <IonApp>
+        <h1>Loading...</h1>
+      </IonApp>
+    );
+  }
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/tags" component={TagsListPage} />
+            <Route exact path="/items" component={ItemsListPage} />
+            <Route exact path="/settings" component={SettingsPage} />
+            <Route path="/" exact component={MainListPage} />
+          </IonRouterOutlet>
+
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="mainTab" href="/">
+              <IonIcon icon={flash} />
+              <IonLabel>List</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="itemsTab" href="/items">
+              <IonIcon icon={apps} />
+              <IonLabel>Items</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="tagsTab" href="/tags">
+              <IonIcon icon={send} />
+              <IonLabel>settings</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="settingsTab" href="/settings">
+              <IonIcon icon={send} />
+              <IonLabel>settings</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
+};
+
+const overmind = createOvermind(config, options);
+export default (props: any) => (
+  <Provider value={overmind}>
+    <App {...props} />
+  </Provider>
 );
-
-export default App;

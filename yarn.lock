@@ -949,6 +949,13 @@
   dependencies:
     tslib "^1.9.0"
 
+"@capacitor/core@latest":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/core/-/core-1.3.0.tgz#d1a319f14888f29c87dadaeea36b2949365344a6"
+  integrity sha512-cVllg+OaYAPCsWOOOuMDqIk0tqjTH1QEBNgTKhAwLJraYy0w5CziUW5gtcmKXTRqD3dzUlHjx1emCKXrg0DACg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@capacitor/ios@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-1.2.1.tgz#e1e9fe08319ed08ecf24622e842724357d0f3e45"
@@ -1371,6 +1378,16 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
 
+"@types/node@*":
+  version "12.12.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.5.tgz#66103d2eddc543d44a04394abb7be52506d7f290"
+  integrity sha512-KEjODidV4XYUlJBF3XdjSH5FWoMCtO0utnhtdLf1AgeuZLOrRbvmU/gaRCVg7ZaQDjVf3l84egiY0mRNe5xE4A==
+
+"@types/node@^10.5.1":
+  version "10.17.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.0.tgz#537c61a1df699a8331c79dab2ccc2c8799873c66"
+  integrity sha512-wuJwN2KV4tIRz1bu9vq5kSPasJ8IsEjZaP1ZR7KlmdUZvGF/rXy8DmXOVwUD0kAtvtJ7aqMKPqUXC0NUTDbrDg==
+
 "@types/node@^12.7.12":
   version "12.11.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.1.tgz#1fd7b821f798b7fa29f667a1be8f3442bb8922a3"
@@ -1429,6 +1446,13 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
+
+"@types/uuid@^3.4.6":
+  version "3.4.6"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.6.tgz#d2c4c48eb85a757bf2927f75f939942d521e3016"
+  integrity sha512-cCdlC/1kGEZdEglzOieLDYBxHsvEOIg7kp/2FYyVR9Pxakq+Qf/inL3RKQ+PA8gOlI/NnL+fXmQH12nwcGzsHw==
+  dependencies:
+    "@types/node" "*"
 
 "@types/yargs-parser@*":
   version "13.1.0"
@@ -2263,6 +2287,14 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+betsy@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/betsy/-/betsy-1.0.2.tgz#e53abc4750d6a6a112a7835f723db0ca01a3b197"
+  integrity sha512-yt/OUTbSeCRj4uwbDnjTbnWgrLsgBl1nzJLdZH2eOtrf3SDH7svdoTMWOvTFhUdIM86pY6k21o/4SCIT6RYjig==
+  dependencies:
+    "@types/node" "^10.5.1"
+    tslib "^1.9.3"
+
 big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
@@ -2585,6 +2617,14 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30000989, can
   version "1.0.30000999"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000999.tgz#427253a69ad7bea4aa8d8345687b8eec51ca0e43"
   integrity sha512-1CUyKyecPeksKwXZvYw0tEoaMCo/RwBlXmEtN5vVnabvO0KPd9RQLcaAuR9/1F+KDMv6esmOFWlsXuzDk+8rxg==
+
+capacitor-data-storage-sqlite@^1.2.1-9:
+  version "1.2.1-9"
+  resolved "https://registry.yarnpkg.com/capacitor-data-storage-sqlite/-/capacitor-data-storage-sqlite-1.2.1-9.tgz#d24f66cc00f9d5368c663f546970345b52d1cca6"
+  integrity sha512-964EVOqxCx65QwBAl+3vWfC4mxpJNn+groQqDxzTL7rWEmL1tMK4q4x20AN/8TRyy0ru0qKGgvL1HjoUMmhRTg==
+  dependencies:
+    "@capacitor/core" latest
+    jeep-localforage "^1.7.5-1"
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -5142,6 +5182,11 @@ ignore@^4.0.6:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
+  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
+
 immer@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
@@ -5543,7 +5588,7 @@ is-path-inside@^1.0.0:
   dependencies:
     path-is-inside "^1.0.1"
 
-is-plain-obj@^1.0.0:
+is-plain-obj@^1.0.0, is-plain-obj@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
   integrity sha1-caUMhCnfync8kqOQpKA7OfzVHT4=
@@ -5700,6 +5745,13 @@ istanbul-reports@^2.2.6:
   integrity sha512-SKi4rnMyLBKe0Jy2uUdx28h8oG7ph2PPuQPvIAh31d+Ci+lSiEu4C+h3oBPuJ9+mPKhOyW0M8gY4U5NM1WLeXA==
   dependencies:
     handlebars "^4.1.2"
+
+jeep-localforage@^1.7.5-1:
+  version "1.7.5-2"
+  resolved "https://registry.yarnpkg.com/jeep-localforage/-/jeep-localforage-1.7.5-2.tgz#669fd9a8d921b018d1584bde2859040215faaf58"
+  integrity sha512-7wR701LxVRDSvv/yBphWnTDwWaMrPEK4h1kUm6pP0G127yX60DJyx7jSSq193QDtOppJeSx+Uzjm1lzxHBQHwQ==
+  dependencies:
+    lie "3.1.1"
 
 jest-changed-files@^24.9.0:
   version "24.9.0"
@@ -6349,6 +6401,13 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+lie@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/lie/-/lie-3.1.1.tgz#9a436b2cc7746ca59de7a41fa469b3efb76bd87e"
+  integrity sha1-mkNrLMd0bKWd56QfpGmz77dr2H4=
+  dependencies:
+    immediate "~3.0.5"
 
 load-json-file@^2.0.0:
   version "2.0.0"
@@ -7359,6 +7418,22 @@ osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
+
+overmind-react@^21.0.0:
+  version "21.0.0"
+  resolved "https://registry.yarnpkg.com/overmind-react/-/overmind-react-21.0.0.tgz#34a1e656b206687e0d915155b0384862c37ca4f2"
+  integrity sha512-MTCPa6G+Y4RtMr2xPrWkXI32eBLCHzrpvRbC6F57arauh6OIAWpoSkaOsonqAL/mUpRuJD2Oswvh9qEAZ8q/AA==
+  dependencies:
+    overmind "20.0.0"
+
+overmind@20.0.0, overmind@^20.0.0:
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/overmind/-/overmind-20.0.0.tgz#7f2d59c3cde031a77747f5f5137391dcc4d0e0d4"
+  integrity sha512-+wxeoqtfPtG8JK+zBSwlyYZAddL0xFPmq47BHNsFosXN1D53NLANNR+MiiJ6fXzkWRPf1pURxq6DkJNqB8EB7w==
+  dependencies:
+    betsy "1.0.2"
+    is-plain-obj "^1.1.0"
+    proxy-state-tree "4.5.0"
 
 p-defer@^1.0.0:
   version "1.0.0"
@@ -8447,6 +8522,13 @@ proxy-addr@~2.0.5:
   dependencies:
     forwarded "~0.1.2"
     ipaddr.js "1.9.0"
+
+proxy-state-tree@4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/proxy-state-tree/-/proxy-state-tree-4.5.0.tgz#f96cc7907f35cfe81209661ba56f4846f877a654"
+  integrity sha512-UaLQKwuQv0j9vhtwd4qj27PdF3VPLca89FfJGwTObtU3dYf1stCatIBwew7Y7geH1IbaoFN+V4DO2EQeJ476AQ==
+  dependencies:
+    is-plain-obj "^1.1.0"
 
 prr@~1.0.1:
   version "1.0.1"
@@ -10592,7 +10674,7 @@ ts-pnp@1.1.4, ts-pnp@^1.1.2:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.4.tgz#ae27126960ebaefb874c6d7fa4729729ab200d90"
   integrity sha512-1J/vefLC+BWSo+qe8OnJQfWTYRS6ingxjwqmHMqaMxXMj7kFtKLgAaYW3JeX3mktjgUL+etlU8/B4VUAUI9QGw==
 
-tslib@*, tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@*, tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
@@ -10846,7 +10928,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.0.1, uuid@^3.3.2:
+uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==

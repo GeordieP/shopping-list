@@ -14,13 +14,17 @@
     "@types/react-router": "^5.1.1",
     "@types/react-router-dom": "^5.1.0",
     "antd": "^3.24.0",
+    "capacitor-data-storage-sqlite": "^1.2.1-9",
     "ionicons": "^4.6.3",
+    "overmind": "^20.0.0",
+    "overmind-react": "^21.0.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.2.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.3",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,6 +49,7 @@
   },
   "description": "An Ionic project",
   "devDependencies": {
-    "@capacitor/cli": "1.2.1"
+    "@capacitor/cli": "1.2.1",
+    "@types/uuid": "^3.4.6"
   }
 }
