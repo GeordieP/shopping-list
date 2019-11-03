@@ -21,6 +21,7 @@ import MainListPage from "./pages/MainListPage";
 import ItemsListPage from "./pages/ItemsListPage";
 import TagsListPage from "./pages/TagsListPage";
 import SettingsPage from "./pages/SettingsPage";
+import ListManagePage from "./pages/ListManagePage";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,7 +41,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-// import "./theme/dark.css";
+import "./theme/dark.css";
 
 const App: React.FC = () => {
   const { state } = useOvermind();
@@ -58,9 +59,10 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tags" component={TagsListPage} />
-            <Route exact path="/items" component={ItemsListPage} />
-            <Route exact path="/settings" component={SettingsPage} />
+            <Route path="/tags" component={TagsListPage} />
+            <Route path="/items" component={ItemsListPage} />
+            <Route path="/settings" component={SettingsPage} />
+            <Route path="/lists" component={ListManagePage} />
             <Route path="/" exact component={MainListPage} />
           </IonRouterOutlet>
 

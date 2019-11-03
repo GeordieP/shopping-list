@@ -34,7 +34,7 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
           actions.tags.setAll(tags);
           break;
 
-        case StorageMembers.Tags:
+        case StorageMembers.Lists:
           const lists = JSON.parse(pair.value) as ListCollection;
           actions.lists.setAll(lists);
           break;
@@ -43,6 +43,12 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
   }
 
   // Reactions to save state to storage
+
+  /*
+  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
+  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
+  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
+  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
 
   overmind.reaction(
     ({ items }) => items.items,
@@ -76,6 +82,7 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
     },
     { nested: true }
   );
+  */
 
   state.appLoading = false;
 };

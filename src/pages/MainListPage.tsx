@@ -10,7 +10,7 @@ import {
   IonText
 } from "@ionic/react";
 
-// import { useOvermind } from "../overmind";
+import { useOvermind } from "../overmind";
 
 interface ListItemMenuModalProps {
   close: () => void;
@@ -29,7 +29,7 @@ const ListItemMenuModal: React.FC<ListItemMenuModalProps> = props => {
 
 const MainListPage: React.FC = () => {
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const { state, actions } = useOvermind();
+  const { state, actions } = useOvermind();
 
   const toggleModal = () => setModalOpen(!modalOpen);
 
