@@ -14,81 +14,22 @@ import {
 } from "@ionic/react";
 import { json, action } from "overmind";
 
+import { makeList } from "../entities";
+
 import { useOvermind } from "../overmind";
-import { makeEntityStateList } from "../entities";
-
-const Item: React.FC<{
-  itemId: string;
-  complete: boolean;
-  setComplete: (complete: boolean) => void;
-}> = ({ itemId, complete, setComplete }) => {
-  const { state } = useOvermind();
-  const item = state.items.items[itemId];
-
-  return (
-    <IonItem onClick={() => setComplete(!complete)}>
-      name: {item.name}
-      tags: {JSON.stringify(item.tagIds)}
-      complete: {complete.toString()}
-    </IonItem>
-  );
-};
-
-const ItemsList: React.FC<{
-  entries: { [key in string]: ItemState };
-}> = ({ entries }) => {
-  const { actions } = useOvermind();
-
-  function setComplete(itemId: string, complete: boolean) {
-    actions.lists.updateEntry({
-      listId: "MAIN",
-      entryId: itemId,
-      entry: { complete }
-    });
-  }
-
-  return (
-    <IonList>
-      {Object.keys(entries).map(itemId => {
-        return (
-          <Item
-            itemId={itemId}
-            complete={entries[itemId].complete}
-            setComplete={comp => setComplete(itemId, comp)}
-          />
-        );
-      })}
-      {/* {items.map(x => (
-        <IonItem key={x.id} onClick={() => setItemCompleteState(x.id, true)}>
-          Name: {x.name} complete: {x.complete.toString()} tags: {x.tags}
-        </IonItem>
-      ))} */}
-    </IonList>
-  );
-};
 
 const ListManagePage: React.FC = () => {
   const { state, actions } = useOvermind();
   const [inputState, setInputState] = React.useState("");
   const [selectedList, setSelectedList] = React.useState("");
-  const [items, setItems] = React.useState<any[]>([]);
+  const [filteredItems, setFilteredItems] = React.useState<Item[]>([]);
 
-  // const items = state.items.itemsList.filter(item => item.id in )
-
-  // React.useEffect(() => {
-  //   if (selectedList === "") return;
-
-  //   const entries = state.lists.lists[selectedList].entries;
-
-  //   const items = Object.keys(entries).map(itemKey => {
-  //     return {
-  //       ...entries[itemKey],
-  //       ...state.items.items[itemKey]
-  //     };
-  //   });
-
-  //   setItems(items);
-  // }, [selectedList]);
+  React.useEffect(() => {
+    const items: Item[] = state.items.itemsList.filter(
+      item => item.listStates[selectedList] != null
+    );
+    setFilteredItems(items);
+  }, [selectedList]);
 
   const onInputChange = (e: any) => {
     setInputState(e.target.value);
@@ -96,16 +37,16 @@ const ListManagePage: React.FC = () => {
 
   function createList() {
     if (inputState.length === 0) return;
-    const newList = makeEntityStateList(inputState);
+    const newList = makeList(inputState);
     setInputState("");
     actions.lists.add(newList);
   }
 
   function setItemCompleteState(itemId: string, completeState: boolean) {
-    actions.lists.updateEntry({
-      listId: "MAIN",
-      entryId: itemId,
-      entry: { complete: completeState }
+    actions.items.setCompleteState({
+      itemId,
+      listId: selectedList,
+      complete: completeState
     });
   }
 
@@ -132,25 +73,36 @@ const ListManagePage: React.FC = () => {
         <IonCard>
           <h2>List of Lists</h2>
           <IonList>
-            {state.lists.listIds.map(x => (
-              <IonItem key={x.id} onClick={() => setSelectedList(x.id)}>
+            {Object.entries(state.lists.lists).map(([key, list]) => {
+              return (
+                <IonItem key={key} onClick={() => setSelectedList(key)}>
+                  {key}: {list.name}
+                </IonItem>
+              );
+            })}
+            {/* {state.lists.listIds.map(x => (
+                <IonItem key={x.id} onClick={() => setSelectedList(x.id)}>
                 {x.id}: {x.name}
-              </IonItem>
-            ))}
+                </IonItem>
+                ))} */}
           </IonList>
         </IonCard>
 
         <IonCard>
           <h2>Selected List ({selectedList || "None"})</h2>
-          {selectedList !== "" && (
-            <ItemsList
-              entries={
-                state.lists.lists[selectedList].entries as {
-                  [key in string]: ItemState;
-                }
-              }
-            />
-          )}
+          <IonList>
+            {filteredItems.map(x => {
+              const complete = x.listStates[selectedList].complete;
+              return (
+                <IonItem
+                  key={x.id}
+                  onClick={() => setItemCompleteState(x.id, !complete)}
+                >
+                  {x.id}: {x.name} complete: {complete.toString()}
+                </IonItem>
+              );
+            })}
+          </IonList>
         </IonCard>
       </IonContent>
     </IonPage>

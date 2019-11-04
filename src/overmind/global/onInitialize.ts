@@ -10,7 +10,7 @@ enum StorageMembers {
 
 type ItemCollection = { [key in string]: Item };
 type TagCollection = { [key in string]: Tag };
-type ListCollection = { [key in string]: EntityStateList<EntityState> };
+type ListCollection = { [key in string]: List };
 
 const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
   state.appLoading = true;
@@ -44,12 +44,6 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
 
   // Reactions to save state to storage
 
-  /*
-  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
-  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
-  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
-  TODO: UNCOMMENT ME BEFORE MERGE -> MASTER ===============================================
-
   overmind.reaction(
     ({ items }) => items.items,
     async items => {
@@ -82,7 +76,6 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
     },
     { nested: true }
   );
-  */
 
   state.appLoading = false;
 };

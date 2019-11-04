@@ -21,11 +21,7 @@ const ItemsListPage: React.FC = () => {
 
   function addItemToList(itemId: string) {
     const listId = "MAIN";
-    actions.lists.addEntry({
-      listId,
-      entryId: itemId,
-      entryState: { complete: false }
-    });
+    actions.items.addToList({ itemId, listId });
   }
 
   return (
