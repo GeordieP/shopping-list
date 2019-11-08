@@ -21,7 +21,7 @@ const ListItem: React.FC<ListItemProps> = ({
         </IonItemOption>
       </IonItemOptions>
 
-      <IonItem>
+      <IonItem button detail={false}>
         <div
           style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
