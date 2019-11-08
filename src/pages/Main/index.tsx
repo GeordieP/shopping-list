@@ -8,10 +8,10 @@ import {
   IonList
 } from "@ionic/react";
 import { RouteComponentProps } from "react-router";
-import { useOvermind } from "../overmind";
+import { useOvermind } from "../../overmind";
 
 // Components
-import ListItem from "../components/ListItem";
+import ListItem from "./ListItem";
 
 const DEFAULT_LIST_ID = "MAIN";
 
