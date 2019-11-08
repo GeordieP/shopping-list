@@ -95,6 +95,12 @@ const Items: React.FC = () => {
     editItemModal.show();
   }
 
+  function onEditItemSave(item: Item) {
+    editItemModal.hide();
+    actions.items.replace(item);
+    setSelectedItem(undefined);
+  }
+
   function onItemDeleteClick(item: Item) {
     setSelectedItem(item);
     deleteItemConfirmAlert.show();
@@ -147,13 +153,14 @@ const Items: React.FC = () => {
 
         {editItemModal.isOpen && (
           <AppModal {...editItemModal}>
-            <EditItem item={selectedItem} saveItem={actions.items.replace} />
+            <EditItem item={selectedItem} saveItem={onEditItemSave} />
           </AppModal>
         )}
 
         {createItemModal.isOpen && (
           <AppModal {...createItemModal}>
             <MakeItem saveItem={onCreateItem} />
+
             {createItemModal.error && (
               <AppModalErrToast
                 onDidDismiss={createItemModal.clearError}

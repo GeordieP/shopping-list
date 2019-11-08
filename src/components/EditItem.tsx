@@ -1,26 +1,49 @@
 import React from "react";
-import { IonGrid, IonRow, IonCol, IonButton } from "@ionic/react";
+import {
+  IonContent,
+  IonItem,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonButton,
+  IonInput,
+  IonLabel
+} from "@ionic/react";
+
+import useInput from "../hooks/useInput";
 
 const EditItem: React.FC<EditItemProps> = ({ item, saveItem }) => {
-  // TODO ...
-  const [itemDraft, setItemDraft] = React.useState();
-  if (item == null) return null;
+  const nameInput = useInput(item.name);
+  const priceInput = useInput(item.price);
+
+  function onSubmit() {
+    saveItem({
+      ...item,
+      name: nameInput.value,
+      price: priceInput.value
+    });
+  }
 
   return (
-    <IonGrid>
-      <IonCol>
-        <IonRow>
-          <IonCol>
-            <h1>Edit Item</h1>
-          </IonCol>
-          <IonCol>
-            <IonButton onClick={() => saveItem(itemDraft)}>Save</IonButton>
-          </IonCol>
-        </IonRow>
-        <IonRow>Name: {item.name}</IonRow>
-        <IonRow>Price: {item.price}</IonRow>
-      </IonCol>
-    </IonGrid>
+    <IonContent>
+      <h1>Edit Item</h1>
+
+      <IonItem>
+        <IonLabel>Name</IonLabel>
+        <IonInput {...nameInput} />
+      </IonItem>
+
+      <IonItem>
+        <IonLabel>Price</IonLabel>
+        <IonInput {...priceInput} clearOnEdit />
+      </IonItem>
+
+      <IonItem>
+        <IonButton expand="block" onClick={onSubmit}>
+          Save
+        </IonButton>
+      </IonItem>
+    </IonContent>
   );
 };
 
@@ -29,6 +52,6 @@ export default EditItem;
 // Types
 
 interface EditItemProps {
-  item?: Item;
+  item: Item;
   saveItem: (item: Item) => void;
 }

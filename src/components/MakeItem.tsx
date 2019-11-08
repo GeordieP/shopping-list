@@ -17,9 +17,6 @@ const MakeItem: React.FC<MakeItemProps> = ({ saveItem }) => {
   function onSubmit() {
     const newItem = makeItem(nameInput.value, priceInput.value);
     saveItem(newItem);
-
-    nameInput.clear();
-    priceInput.clear();
   }
 
   return (
@@ -39,7 +36,9 @@ const MakeItem: React.FC<MakeItemProps> = ({ saveItem }) => {
       </IonItem>
 
       <IonItem>
-        <IonButton onClick={onSubmit}>Save</IonButton>
+        <IonButton expand="block" onClick={onSubmit}>
+          Save
+        </IonButton>
       </IonItem>
     </IonContent>
   );
