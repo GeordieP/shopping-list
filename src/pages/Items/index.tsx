@@ -8,74 +8,25 @@ import {
   IonFab,
   IonFabButton,
   IonIcon,
-  IonList,
-  IonChip,
-  IonItem,
-  IonItemSliding,
-  IonItemOptions,
-  IonItemOption
+  IonList
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 
 // Overmind
-import { useOvermind } from "../overmind";
+import { useOvermind } from "../../overmind";
 
 // Hooks
-import useAlert from "../hooks/useAlert";
+import useAlert from "../../hooks/useAlert";
 
 // Components
-import DeleteConfirmAlert from "../components/DeleteConfirmAlert";
-import AppModal, { useModal, AppModalErrToast } from "../components/AppModal";
-import EditItem from "../components/EditItem";
-import MakeItem from "../components/MakeItem";
-
-const ListItem: React.FC<ListItemProps> = ({
-  item,
-  tags,
-  onEdit,
-  onDelete
-}) => {
-  return (
-    <IonItemSliding>
-      <IonItemOptions side="start">
-        <IonItemOption color="primary" onClick={onEdit}>
-          Edit Item
-        </IonItemOption>
-      </IonItemOptions>
-
-      <IonItem>
-        <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
-        >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}
-          >
-            <h1>{item.name}</h1>
-            <p>{item.price}</p>
-          </div>
-          <div>
-            {tags.map(t => (
-              <IonChip outline color="primary">
-                {t.name}
-              </IonChip>
-            ))}
-          </div>
-        </div>
-      </IonItem>
-
-      <IonItemOptions side="end">
-        <IonItemOption color="danger" onClick={onDelete}>
-          Delete
-        </IonItemOption>
-      </IonItemOptions>
-    </IonItemSliding>
-  );
-};
+import DeleteConfirmAlert from "../../components/DeleteConfirmAlert";
+import AppModal, {
+  useModal,
+  AppModalErrToast
+} from "../../components/AppModal";
+import EditItem from "../../components/EditItem";
+import MakeItem from "../../components/MakeItem";
+import ListItem from "./ListItem";
 
 const Items: React.FC = () => {
   const { state, actions } = useOvermind();
@@ -184,12 +135,3 @@ const Items: React.FC = () => {
 };
 
 export default Items;
-
-// Types
-
-interface ListItemProps {
-  item: Item;
-  tags: Tag[];
-  onEdit: () => void;
-  onDelete: () => void;
-}
