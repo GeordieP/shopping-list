@@ -7,7 +7,14 @@ export function makeItem(name: string, price: string = ""): Item {
     id,
     name,
     price,
-    tagIds: []
+    tagIds: [],
+    listStates: {}
+  };
+}
+
+export function makeItemState(complete = false): ItemState {
+  return {
+    complete
   };
 }
 
@@ -21,14 +28,11 @@ export function makeTag(name: string, color: string = ""): Tag {
   };
 }
 
-export function makeEntityStateList<TEntityState extends EntityState>(
-  name: string
-): EntityStateList<TEntityState> {
+export function makeList(name: string): List {
   const id = makeId(name);
 
   return {
     id,
-    name,
-    entries: {}
+    name
   };
 }

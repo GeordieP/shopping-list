@@ -3,7 +3,7 @@ export type State = {
 };
 
 const state: State = {
-  appLoading: true
+  appLoading: false // TODO: SET TO TRUE BY DEFAULT
 };
 
 export default state;

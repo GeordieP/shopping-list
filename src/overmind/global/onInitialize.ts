@@ -1,6 +1,5 @@
 import { OnInitialize } from "overmind";
 import storage from "app/storage";
-import { continueStatement } from "@babel/types";
 
 enum StorageMembers {
   Items = "ITEMS",
@@ -10,7 +9,7 @@ enum StorageMembers {
 
 type ItemCollection = { [key in string]: Item };
 type TagCollection = { [key in string]: Tag };
-type ListCollection = { [key in string]: EntityStateList<EntityState> };
+type ListCollection = { [key in string]: List };
 
 const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
   state.appLoading = true;
@@ -34,7 +33,7 @@ const onInitialize: OnInitialize = async ({ state, actions }, overmind) => {
           actions.tags.setAll(tags);
           break;
 
-        case StorageMembers.Tags:
+        case StorageMembers.Lists:
           const lists = JSON.parse(pair.value) as ListCollection;
           actions.lists.setAll(lists);
           break;

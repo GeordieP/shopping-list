@@ -5,7 +5,7 @@ export const safeRemoveTag: Action<string> = ({ actions }, tagId) => {
   actions.items.removeTagFromAll(tagId);
 };
 
-export const safeRemoveItem: Action<string> = ({ actions }, itemId) => {
-  actions.items.remove(itemId);
-  actions.lists.removeEntryFromAll(itemId);
+export const safeRemoveList: Action<string> = ({ actions }, listId) => {
+  actions.lists.remove(listId);
+  actions.items.removeAllFromList(listId);
 };
