@@ -1,6 +1,5 @@
 import { OnInitialize } from "overmind";
 import storage from "app/storage";
-import { continueStatement } from "@babel/types";
 
 enum StorageMembers {
   Items = "ITEMS",
