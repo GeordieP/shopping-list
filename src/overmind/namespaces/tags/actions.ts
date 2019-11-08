@@ -24,7 +24,7 @@ export const remove: Action<string> = ({ state }, tagId) => {
   delete state.tags.tags[tagId];
 };
 
-export const update: Action<{ tagId: string; tag: Partial<Tag> }> = (
+export const updateById: Action<{ tagId: string; tag: Partial<Tag> }> = (
   { state },
   { tagId, tag }
 ) => {
@@ -35,4 +35,15 @@ export const update: Action<{ tagId: string; tag: Partial<Tag> }> = (
   }
 
   state.tags.tags[tagId] = { ...state.tags.tags[tagId], ...tag };
+};
+
+export const replace: Action<Tag> = ({ state }, tag) => {
+  const tagId = tag.id;
+  if (state.tags.tags[tagId] == null) {
+    throw new Error(
+      `Could not update tag: Tag with id >${tagId}< doesn't exist`
+    );
+  }
+
+  state.tags.tags[tagId] = tag;
 };
