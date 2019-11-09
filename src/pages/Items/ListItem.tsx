@@ -37,8 +37,9 @@ const ListItem: React.FC<ListItemProps> = ({
             <p>{item.price}</p>
           </div>
           <div>
+            {/* TODO: use tag color */}
             {tags.map(t => (
-              <IonChip outline color="primary">
+              <IonChip key={t.id} outline color="primary">
                 {t.name}
               </IonChip>
             ))}

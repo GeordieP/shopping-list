@@ -116,6 +116,7 @@ const Tags: React.FC = () => {
 
             return (
               <ListTag
+                key={t.id}
                 tag={t}
                 itemCount={itemCount}
                 onEdit={onEdit}

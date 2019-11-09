@@ -1,4 +1,4 @@
-import { Action } from "overmind";
+import { Action, json } from "overmind";
 import { makeItemState } from "../../../entities";
 
 export const setAll: Action<{ [key in string]: Item }> = ({ state }, items) => {
@@ -50,17 +50,6 @@ export const replace: Action<Item> = ({ state }, item) => {
   state.items.items[itemId] = item;
 };
 
-export const addTag: Action<{ itemId: string; tagId: string }> = (
-  { state },
-  { itemId, tagId }
-) => {
-  const item = state.items.items[itemId];
-
-  if (item.tagIds.indexOf(tagId) > -1) return;
-
-  item.tagIds.push(tagId);
-};
-
 export const removeTag: Action<{ itemId: string; tagId: string }> = (
   { state },
   { itemId, tagId }
@@ -74,9 +63,13 @@ export const removeTag: Action<{ itemId: string; tagId: string }> = (
 };
 
 export const removeTagFromAll: Action<string> = ({ state, actions }, tagId) => {
-  state.items.itemsList.forEach(item => {
-    actions.items.removeTag({ itemId: item.id, tagId });
+  const items = json(state.items.items) as { [key in string]: Item };
+
+  Object.keys(items).forEach(key => {
+    items[key].tagIds.filter(t => t !== tagId);
   });
+
+  // actions.items.setAll(items);
 };
 
 export const addToList: Action<{ itemId: string; listId: string }> = (

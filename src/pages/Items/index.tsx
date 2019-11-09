@@ -104,7 +104,11 @@ const Items: React.FC = () => {
 
         {editItemModal.isOpen && (
           <AppModal {...editItemModal}>
-            <EditItem item={selectedItem} saveItem={onEditItemSave} />
+            <EditItem
+              item={selectedItem}
+              saveItem={onEditItemSave}
+              tags={state.tags.tagsList}
+            />
           </AppModal>
         )}
 
