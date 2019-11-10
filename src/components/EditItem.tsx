@@ -2,30 +2,14 @@ import React from "react";
 import {
   IonContent,
   IonItem,
-  IonGrid,
-  IonRow,
-  IonCol,
   IonButton,
   IonInput,
-  IonLabel,
-  IonChip
+  IonLabel
 } from "@ionic/react";
 
-import useInput from "../hooks/useInput";
+import TagToggle from "../components/TagToggle";
 
-const TagToggle: React.FC<TagToggleProps> = ({
-  name,
-  color,
-  toggled,
-  onClick
-}) => {
-  // TODO: use color
-  return (
-    <IonChip onClick={onClick} outline={toggled}>
-      {name}
-    </IonChip>
-  );
-};
+import useInput from "../hooks/useInput";
 
 const EditItem: React.FC<EditItemProps> = ({ item, saveItem, tags }) => {
   const nameInput = useInput(item.name);
@@ -101,11 +85,4 @@ interface EditItemProps {
   item: Item;
   saveItem: (item: Item) => void;
   tags: Tag[];
-}
-
-interface TagToggleProps {
-  name: string;
-  color: string;
-  toggled: boolean;
-  onClick: () => void;
 }

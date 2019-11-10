@@ -114,7 +114,7 @@ const Items: React.FC = () => {
 
         {createItemModal.isOpen && (
           <AppModal {...createItemModal}>
-            <MakeItem saveItem={onCreateItem} />
+            <MakeItem saveItem={onCreateItem} tags={state.tags.tagsList} />
 
             {createItemModal.error && (
               <AppModalErrToast

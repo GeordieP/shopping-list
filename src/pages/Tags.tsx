@@ -93,7 +93,7 @@ const Tags: React.FC = () => {
 
   function onDeleteTagConfirmed() {
     deleteTagConfirmAlert.hide();
-    actions.tags.remove(selectedTag.id);
+    actions.safeRemoveTag(selectedTag.id);
     setSelectedTag(undefined);
   }
 
