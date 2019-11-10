@@ -1,28 +1,43 @@
 import React from "react";
 
-import { IonText, IonCheckbox, IonGrid, IonCol, IonRow } from "@ionic/react";
+import {
+  IonCheckbox,
+  IonItem,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption
+} from "@ionic/react";
 
 const ListItem: React.FC<ListItemProps> = props => {
-  function toggleComplete() {
-    props.setCompleteState(!props.complete);
-  }
-
   return (
-    <IonGrid>
-      <IonRow>
-        <IonCol>
-          <IonCheckbox
-            color="primary"
-            checked={props.complete}
-            onChange={toggleComplete}
-          />
-          <IonText color="primary">
-            <h1>{props.name}</h1>
-          </IonText>
-        </IonCol>
-        <IonCol>${props.price}</IonCol>
-      </IonRow>
-    </IonGrid>
+    <IonItemSliding>
+      <IonItem button detail={false} onClick={props.toggleComplete}>
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+        >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}
+          >
+            <h1>
+              <IonCheckbox color="primary" checked={props.complete} />
+              {props.name}
+            </h1>
+            <p>{props.price}</p>
+          </div>
+        </div>
+      </IonItem>
+
+      <IonItemOptions side="end">
+        <IonItemOption color="danger" onClick={props.removeFromList}>
+          Remove
+        </IonItemOption>
+      </IonItemOptions>
+    </IonItemSliding>
   );
 };
 
@@ -34,5 +49,6 @@ interface ListItemProps {
   name: string;
   price: string;
   complete: boolean;
-  setCompleteState: (complete: boolean) => void;
+  toggleComplete: () => void;
+  removeFromList: () => void;
 }
