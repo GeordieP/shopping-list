@@ -10,6 +10,7 @@ import {
 const ListItem: React.FC<ListItemProps> = ({
   item,
   tags,
+  onAddToList,
   onEdit,
   onDelete
 }) => {
@@ -21,7 +22,7 @@ const ListItem: React.FC<ListItemProps> = ({
         </IonItemOption>
       </IonItemOptions>
 
-      <IonItem button detail={false}>
+      <IonItem button detail={false} onClick={onAddToList}>
         <div
           style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
@@ -63,6 +64,7 @@ export default ListItem;
 interface ListItemProps {
   item: Item;
   tags: Tag[];
+  onAddToList: () => void;
   onEdit: () => void;
   onDelete: () => void;
 }

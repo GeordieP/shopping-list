@@ -24,9 +24,13 @@ const Main: React.FC<MatchProps> = ({ match }) => {
     .filter(i => listId in i.listStates)
     .map(i => ({ ...i, complete: i.listStates[listId].complete }));
 
-  const setItemComplete = (itemId: string) => (complete: boolean) => {
+  function setItemComplete(itemId: string, complete: boolean) {
     actions.items.setCompleteState({ itemId, listId, complete });
-  };
+  }
+
+  function removeItemFromList(itemId: string) {
+    actions.items.removeFromList({ listId, itemId });
+  }
 
   return (
     <IonPage>
@@ -39,9 +43,20 @@ const Main: React.FC<MatchProps> = ({ match }) => {
         <p>Main Page</p>
 
         <IonList>
-          {items.map(item => (
-            <ListItem {...item} setCompleteState={setItemComplete(item.id)} />
-          ))}
+          {items.map(item => {
+            const toggleComplete = () =>
+              setItemComplete(item.id, !item.complete);
+            const removeFromList = () => removeItemFromList(item.id);
+
+            return (
+              <ListItem
+                key={item.id}
+                toggleComplete={toggleComplete}
+                removeFromList={removeFromList}
+                {...item}
+              />
+            );
+          })}
         </IonList>
       </IonContent>
     </IonPage>
