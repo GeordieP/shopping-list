@@ -50,17 +50,6 @@ export const replace: Action<Item> = ({ state }, item) => {
   state.items.items[itemId] = item;
 };
 
-export const addTag: Action<{ itemId: string; tagId: string }> = (
-  { state },
-  { itemId, tagId }
-) => {
-  const item = state.items.items[itemId];
-
-  if (item.tagIds.indexOf(tagId) > -1) return;
-
-  item.tagIds.push(tagId);
-};
-
 export const removeTag: Action<{ itemId: string; tagId: string }> = (
   { state },
   { itemId, tagId }
@@ -75,7 +64,7 @@ export const removeTag: Action<{ itemId: string; tagId: string }> = (
 
 export const removeTagFromAll: Action<string> = ({ state, actions }, tagId) => {
   state.items.itemsList.forEach(item => {
-    actions.items.removeTag({ itemId: item.id, tagId });
+    actions.items.removeTag({ tagId, itemId: item.id });
   });
 };
 
@@ -125,7 +114,7 @@ export const removeAllFromList: Action<string> = (
   { state, actions },
   listId
 ) => {
-  state.items.itemsList.forEach(item => {
+  state.items.itemsList.forEach(async item => {
     actions.items.removeFromList({ itemId: item.id, listId });
   });
 };

@@ -1,13 +1,17 @@
 import { makeId } from "app/id";
 
-export function makeItem(name: string, price: string = ""): Item {
+export function makeItem(
+  name: string,
+  price: string = "",
+  tags: string[] = []
+): Item {
   const id = makeId(name);
 
   return {
     id,
     name,
     price,
-    tagIds: [],
+    tagIds: tags,
     listStates: {}
   };
 }

@@ -93,7 +93,7 @@ const Tags: React.FC = () => {
 
   function onDeleteTagConfirmed() {
     deleteTagConfirmAlert.hide();
-    actions.tags.remove(selectedTag.id);
+    actions.safeRemoveTag(selectedTag.id);
     setSelectedTag(undefined);
   }
 
@@ -116,6 +116,7 @@ const Tags: React.FC = () => {
 
             return (
               <ListTag
+                key={t.id}
                 tag={t}
                 itemCount={itemCount}
                 onEdit={onEdit}
