@@ -35,6 +35,12 @@ const Main: React.FC<MatchProps> = ({ match }) => {
     .filter(i => listId in i.listStates)
     .map(i => ({ ...i, complete: i.listStates[listId].complete }));
 
+  // TODO: totals for completed items should be calculated over the 'completed items' filtered list after that's in.
+  const total = items.reduce(
+    (total, i) => total + parseFloat(i.price || "0"),
+    0.0
+  );
+
   function setItemComplete(itemId: string, complete: boolean) {
     actions.items.setCompleteState({ itemId, listId, complete });
   }
@@ -64,7 +70,7 @@ const Main: React.FC<MatchProps> = ({ match }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <p>Main Page</p>
+        <p>Main Page (total: ${total})</p>
 
         <IonList>
           {items.map(item => {
