@@ -100,14 +100,9 @@ export const removeFromList: Action<{ itemId: string; listId: string }> = (
 
   const item = state.items.items[itemId];
 
-  // TODO: is this check good or should we silently fail?
-  if (item.listStates[listId] == null) {
-    throw new Error(
-      `Couldn't remove item from list: Item >${itemId}< doesn't contain a reference to list with ID >${listId}<`
-    );
+  if (listId in item.listStates) {
+    delete item.listStates[listId];
   }
-
-  delete item.listStates[listId];
 };
 
 export const removeAllFromList: Action<string> = (
