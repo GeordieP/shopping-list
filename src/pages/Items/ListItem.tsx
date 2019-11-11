@@ -4,8 +4,51 @@ import {
   IonItem,
   IonItemSliding,
   IonItemOptions,
-  IonItemOption
+  IonItemOption,
+  IonCard,
+  IonGrid,
+  IonRow,
+  IonCol
 } from "@ionic/react";
+
+/*
+const old = (
+
+
+          <IonRow>
+            <IonCol>
+              <h1>{item.name}</h1>
+            </IonCol>
+            <IonCol>
+              <p>{item.price}</p>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              {tags.map(t => (
+                <IonChip
+                  key={t.id}
+                  outline
+                  color="primary"
+                  style={{ padding: "5px", height: "22px", fontSize: "8pt" }}
+                >
+                  {t.name}
+                </IonChip>
+              ))}
+            </IonCol>
+          </IonRow>
+)
+*/
+
+const Mychip = (props: any) => (
+  <IonChip
+    outline
+    color="primary"
+    style={{ padding: "5px", height: "22px", fontSize: "8pt" }}
+  >
+    test chip
+  </IonChip>
+);
 
 const ListItem: React.FC<ListItemProps> = ({
   item,
@@ -22,31 +65,39 @@ const ListItem: React.FC<ListItemProps> = ({
         </IonItemOption>
       </IonItemOptions>
 
-      <IonItem button detail={false} onClick={onAddToList}>
-        <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
-        >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}
-          >
-            <h1>{item.name}</h1>
-            <p>{item.price}</p>
-          </div>
-          <div>
-            {/* TODO: use tag color */}
-            {tags.map(t => (
-              <IonChip key={t.id} outline color="primary">
-                {t.name}
-              </IonChip>
-            ))}
-          </div>
-        </div>
-      </IonItem>
+      <IonCard onClick={onAddToList} style={{ margin: "8px 10px" }}>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonRow>
+                <IonCol style={{ background: "#f0f" }}>Title, Price</IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol
+                  style={{
+                    overflowX: "auto",
+                    height: "30px"
+                  }}
+                >
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                  <Mychip />
+                </IonCol>
+              </IonRow>
+            </IonCol>
+
+            <IonCol size="3" style={{ background: "#0f0" }}>
+              Add Button
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonCard>
 
       <IonItemOptions side="end">
         <IonItemOption color="danger" onClick={onDelete}>
