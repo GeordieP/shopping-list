@@ -50,6 +50,9 @@
   "description": "An Ionic project",
   "devDependencies": {
     "@capacitor/cli": "1.2.1",
-    "@types/uuid": "^3.4.6"
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/uuid": "^3.4.6",
+    "react-test-renderer": "^16.11.0"
   }
 }
