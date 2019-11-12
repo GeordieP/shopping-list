@@ -22,12 +22,14 @@ import { useOvermind } from "../overmind";
 
 // Hooks
 import useAlert from "../hooks/useAlert";
+import useFilters from "../hooks/useFilters";
 
 // Components
 import DeleteConfirmAlert from "../components/DeleteConfirmAlert";
 import AppModal, { useModal, AppModalErrToast } from "../components/AppModal";
 import MakeTag from "../components/MakeTag";
 import EditTag from "../components/EditTag";
+import FilterSearch from "../components/FilterSearch";
 
 const ListTag: React.FC<ListTagProps> = ({
   tag,
@@ -64,6 +66,9 @@ const Tags: React.FC = () => {
   const editTagModal = useModal();
   const createTagModal = useModal();
   const deleteTagConfirmAlert = useAlert();
+
+  const { applyFilters, ...filterControls } = useFilters<Tag>();
+  const tags = applyFilters(state.tags.tagsList);
 
   function onCreateTag(newTag: Tag) {
     actions.tags.add(newTag);
@@ -105,8 +110,10 @@ const Tags: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        <FilterSearch {...filterControls} />
+
         <IonList>
-          {state.tags.tagsList.map(t => {
+          {tags.map(t => {
             const itemCount = state.items.itemsList.filter(i =>
               i.tagIds.includes(t.id)
             ).length;
