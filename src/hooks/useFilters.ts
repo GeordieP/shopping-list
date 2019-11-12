@@ -30,5 +30,5 @@ export default function useFilters<T>(
 
 // Types
 
-type FilterFn<T> = (item: T) => boolean;
+export type FilterFn<T> = (item: T) => boolean;
 type FilterFnCollection<T> = { [key in string]: FilterFn<T> };

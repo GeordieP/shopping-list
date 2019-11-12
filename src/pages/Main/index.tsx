@@ -17,22 +17,29 @@ import { useOvermind } from "../../overmind";
 
 // Hooks
 import useAlert from "../../hooks/useAlert";
+import useFilters from "../../hooks/useFilters";
 
 // Components
-import ListItem from "./ListItem";
+import { CompletedItemsList, PendingItemsList } from "./ItemsList";
 import ConfirmAlert from "../../components/ConfirmAlert";
+import FilterSearch from "../../components/FilterSearch";
+import FilterTags from "../../components/FilterTags";
 
 const DEFAULT_LIST_ID = "MAIN";
 
 const Main: React.FC<MatchProps> = ({ match }) => {
   const { state, actions } = useOvermind();
+  const clearListConfirmAlert = useAlert();
 
   const listId = match.params.listId || DEFAULT_LIST_ID;
 
-  const clearListConfirmAlert = useAlert();
+  const itemInListFilter = {
+    itemInMainList: (item: Item) => listId in item.listStates
+  };
+  const { applyFilters, ...filterControls } = useFilters(itemInListFilter);
 
-  const items = state.items.itemsList
-    .filter(i => listId in i.listStates)
+  // prettier-ignore
+  const items: CompletableItem[] = applyFilters(state.items.itemsList)
     .map(i => ({ ...i, complete: i.listStates[listId].complete }));
 
   function setItemComplete(itemId: string, complete: boolean) {
@@ -64,23 +71,25 @@ const Main: React.FC<MatchProps> = ({ match }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <p>Main Page</p>
+        <FilterSearch {...filterControls} />
+        <FilterTags tags={state.tags.tagsList} {...filterControls} />
 
+        <h1>Shopping List</h1>
         <IonList>
-          {items.map(item => {
-            const toggleComplete = () =>
-              setItemComplete(item.id, !item.complete);
-            const removeFromList = () => removeItemFromList(item.id);
+          <PendingItemsList
+            items={items}
+            setItemComplete={setItemComplete}
+            removeItemFromList={removeItemFromList}
+          />
+        </IonList>
 
-            return (
-              <ListItem
-                key={item.id}
-                toggleComplete={toggleComplete}
-                removeFromList={removeFromList}
-                {...item}
-              />
-            );
-          })}
+        <h1>Completed Items</h1>
+        <IonList>
+          <CompletedItemsList
+            items={items}
+            setItemComplete={setItemComplete}
+            removeItemFromList={removeItemFromList}
+          />
         </IonList>
 
         <IonFab vertical="bottom" horizontal="end" slot="fixed">
@@ -107,3 +116,4 @@ export default Main;
 
 // Types
 type MatchProps = RouteComponentProps<{ listId: string }>;
+export type CompletableItem = Item & { complete: boolean };
