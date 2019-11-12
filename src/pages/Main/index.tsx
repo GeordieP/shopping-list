@@ -36,7 +36,9 @@ const Main: React.FC<MatchProps> = ({ match }) => {
   const itemInListFilter = {
     itemInMainList: (item: Item) => listId in item.listStates
   };
-  const { applyFilters, ...filterControls } = useFilters(itemInListFilter);
+  const { applyFilters, ...filterControls } = useFilters<Item>(
+    itemInListFilter
+  );
 
   // prettier-ignore
   const items: CompletableItem[] = applyFilters(state.items.itemsList)

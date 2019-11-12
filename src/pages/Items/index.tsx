@@ -17,6 +17,7 @@ import { useOvermind } from "../../overmind";
 
 // Hooks
 import useAlert from "../../hooks/useAlert";
+import useFilters from "../../hooks/useFilters";
 
 // Components
 import DeleteConfirmAlert from "../../components/DeleteConfirmAlert";
@@ -27,6 +28,8 @@ import AppModal, {
 import EditItem from "../../components/EditItem";
 import MakeItem from "../../components/MakeItem";
 import ListItem from "./ListItem";
+import FilterSearch from "../../components/FilterSearch";
+import FilterTags from "../../components/FilterTags";
 
 // Constants
 const DEFAULT_LIST_ID = "MAIN";
@@ -38,6 +41,9 @@ const Items: React.FC = () => {
   const editItemModal = useModal();
   const createItemModal = useModal();
   const deleteItemConfirmAlert = useAlert();
+
+  const { applyFilters, ...filterControls } = useFilters<Item>();
+  const items = applyFilters(state.items.itemsList);
 
   function onCreateItem(newItem: Item) {
     actions.items.add(newItem);
@@ -84,10 +90,11 @@ const Items: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h1>Items</h1>
+        <FilterSearch {...filterControls} />
+        <FilterTags tags={state.tags.tagsList} {...filterControls} />
 
         <IonList>
-          {state.items.itemsList.map(i => {
+          {items.map(i => {
             const tags = i.tagIds.map(tId => state.tags.tags[tId]);
 
             const onAddToList = () => addItemToList(i.id);
