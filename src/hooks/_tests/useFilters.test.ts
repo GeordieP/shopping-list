@@ -4,7 +4,7 @@ import useFilters from "../useFilters";
 const testList = ["first", "second", "third", "fourth"];
 
 test("should overwrite an existing filter function if names match", async () => {
-  const { result: h } = renderHook(() => useFilters());
+  const { result: h } = renderHook(() => useFilters<string>());
 
   // helper; build a filter function for a given string
   const searchFor = (str: string) => (item: string) => item.includes(str);
@@ -23,7 +23,7 @@ test("should overwrite an existing filter function if names match", async () => 
 });
 
 test("should apply two uniquely named filters to a list", async () => {
-  const { result: h } = renderHook(() => useFilters());
+  const { result: h } = renderHook(() => useFilters<string>());
 
   const startsWithFilter = (item: string) => item[0] === "f";
   const searchFilter = (item: string) => item.includes("i");
