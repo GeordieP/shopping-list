@@ -9,7 +9,9 @@ import {
   IonFabButton,
   IonIcon,
   IonList,
-  IonListHeader
+  IonListHeader,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent
 } from "@ionic/react";
 import { add } from "ionicons/icons";
 
@@ -94,7 +96,7 @@ const Items: React.FC = () => {
         <FilterSearch {...filterControls} />
         <FilterTags tags={state.tags.tagsList} {...filterControls} />
 
-        <IonList>
+        <IonList style={{ marginTop: "30px" }}>
           {items.map(i => {
             const tags = i.tagIds.map(tId => state.tags.tags[tId]);
 

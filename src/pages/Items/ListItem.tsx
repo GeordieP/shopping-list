@@ -118,14 +118,7 @@ const ListItem: React.FC<ListItemProps> = ({
         </IonItemOption>
       </IonItemOptions>
 
-      <IonCard
-        style={{
-          marginTop: "9px",
-          marginBottom: "9px",
-          padding: 0,
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-        }}
-      >
+      <IonItem>
         <div
           className="Wrap"
           style={{
@@ -167,7 +160,7 @@ const ListItem: React.FC<ListItemProps> = ({
             </IonButton>
           </div>
         </div>
-      </IonCard>
+      </IonItem>
 
       <IonItemOptions side="end">
         <IonItemOption color="danger" onClick={onDelete}>
